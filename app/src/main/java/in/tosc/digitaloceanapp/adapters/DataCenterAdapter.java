@@ -19,7 +19,7 @@ import in.tosc.digitaloceanapp.models.Datacenter;
  * Created by rishabhkhanna on 27/11/16.
  */
 
-public class DataCenterAdapter extends RecyclerView.Adapter<DataCenterAdapter.DataCenterViewHolder> {
+public class DataCenterAdapter extends RecyclerView.Adapter<DataCenterAdapter.DataCenterViewHolder> implements View.OnClickListener {
 
     private ArrayList<Datacenter.center> countriesList;
     private Context context;
@@ -41,7 +41,6 @@ public class DataCenterAdapter extends RecyclerView.Adapter<DataCenterAdapter.Da
         this.postion = holder.getAdapterPosition();
         String thisCountry = countriesList.get(position).getCity();
         int url = countriesList.get(position).getId();
-
         holder.countryName.setText(thisCountry);
         Picasso.with(context).load(url).resize(425,220).into(holder.img);
 
@@ -52,6 +51,11 @@ public class DataCenterAdapter extends RecyclerView.Adapter<DataCenterAdapter.Da
         return countriesList.size();
     }
 
+    @Override
+    public void onClick(View view) {
+
+    }
+
     class DataCenterViewHolder extends  RecyclerView.ViewHolder{
 
         TextView countryName;
@@ -59,6 +63,7 @@ public class DataCenterAdapter extends RecyclerView.Adapter<DataCenterAdapter.Da
 
         public DataCenterViewHolder(View itemView) {
             super(itemView);
+            itemView.setClickable(true);
             countryName = (TextView) itemView.findViewById(R.id.countryName);
             img = (ImageView) itemView.findViewById(R.id.country_url);
         }

@@ -1,11 +1,8 @@
 package in.tosc.digitaloceanapp.adapters;
 
 import android.content.Context;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,13 +11,12 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import in.tosc.digitaloceanapp.activities.DropletCreateActivity;
 import in.tosc.digitaloceanapp.R;
 import in.tosc.doandroidlib.objects.Image;
 
-public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> implements View.OnClickListener {
+public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> {
 
-    private final List<Image> imageList;
+    private List<Image> imageList;
     private int position;
     private Context context;
 
@@ -40,7 +36,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.imageName.setText(imageList.get(position).getName());
-        this.position = holder.getAdapterPosition();
+//        this.position = holder.getAdapterPosition();
         holder.imageDistribution.setText(imageList.get(position).getDistribution());
         switch (imageList.get(position).getDistribution()){
             case "CoreOS":
@@ -67,14 +63,6 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
     @Override
     public int getItemCount() {
         return imageList.size();
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    @Override
-    public void onClick(View v) {
-        v.setBackground(context.getDrawable(R.drawable.selector));
-        DropletCreateActivity.getDroplet().setImage(imageList.get(this.position));
-        Log.e("OnClick",imageList.get(this.position).getDistribution());
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

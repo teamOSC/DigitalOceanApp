@@ -28,7 +28,7 @@ public class SelectSizeAdapter extends RecyclerView.Adapter<SelectSizeAdapter.Vi
 
     @Override
     public SelectSizeAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_size,parent,false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_size,parent,false);
         itemView.setOnClickListener(this);
         return new SelectSizeAdapter.ViewHolder(itemView);
     }
@@ -60,6 +60,7 @@ public class SelectSizeAdapter extends RecyclerView.Adapter<SelectSizeAdapter.Vi
         public ViewHolder(View itemView) {
             super(itemView);
             view = itemView;
+            itemView.setClickable(true);
             monthlyPrice = (TextView) itemView.findViewById(R.id.monthly_price);
             hourlyPrice = (TextView) itemView.findViewById(R.id.hourly_price);
             memory = (TextView) itemView.findViewById(R.id.memory_space);
